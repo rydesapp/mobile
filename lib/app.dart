@@ -17,6 +17,7 @@ class App extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
       ],
       supportedLocales: i18n.supportedLocales(),
+      
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/global/ui/ui.dart';
 import 'package:mobile/helpers/images.gen.dart';
 
 class Logo extends StatelessWidget {
@@ -7,9 +8,7 @@ class Logo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final image = Theme.of(context).brightness == Brightness.dark
-        ? IMG.global.darkLogoPNG
-        : IMG.global.logoPNG;
+    final image = AppTheme.isDark ? IMG.global.darkLogoPNG : IMG.global.logoPNG;
     return Image.asset(
       image,
       width: width,

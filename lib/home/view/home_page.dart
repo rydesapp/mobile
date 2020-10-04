@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/global/ui/ui.dart';
 import 'package:mobile/global/utils/i18n.dart';
 import 'package:mobile/global/widgets/logo.dart';
 import 'package:mobile/helpers/images.gen.dart';
@@ -8,12 +9,20 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppTheme.isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Scaffold(
       body: DecoratedBox(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(IMG.global.bgPNG),
+            image: AssetImage(
+              IMG.global.bgPNG,
+            ),
             fit: BoxFit.cover,
+            colorFilter: ColorFilter.mode(
+              Colors.white.withOpacity(AppTheme.isDark ? 0 : 1),
+              BlendMode.softLight,
+            ),
           ),
         ),
         child: Column(
@@ -25,7 +34,7 @@ class HomePage extends StatelessWidget {
                 children: [
                   Logo(),
                   SizedBox(
-                    height: 12,
+                    height: defaultSpacing,
                   ),
                   Text(
                     i18n.text('landing_sentence'),
@@ -37,7 +46,7 @@ class HomePage extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 60.0),
+              padding: const EdgeInsets.only(bottom: bottomLargeSpace),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -49,7 +58,7 @@ class HomePage extends StatelessWidget {
                     onPressed: () => {},
                   ),
                   SizedBox(
-                    width: 12,
+                    width: defaultSpacing,
                   ),
                   RaisedButton(
                     child: Text(
