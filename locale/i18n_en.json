@@ -1,0 +1,15 @@
+{
+  "landing_sentence": "Transportation reimagined",
+  "sign_up": "Sign Up",
+  "sign_in": "Sign In",
+  "enter_phone_title": "Enter your mobile number",
+  "enter_phone_subtitle": "Enter it to create an account or to sign in",
+  "enter_phone_error_msg": "Invalid phone number.",
+  "verify_phone_title": "Enter the 6-digit code sent to you at",
+  "verify_phone_error_msg": "Invalid verification code.",
+  "verify_phone_resend_text": "Resend the code",
+  "verify_phone_sending_text": "Sending...",
+  "first_name_placeholder": "Enter your first name",
+  "last_name_placeholder": "Enter your last name",
+  "email_placeholder": "name@example.com"
+}
