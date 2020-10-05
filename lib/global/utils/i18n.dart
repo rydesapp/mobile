@@ -21,8 +21,8 @@ class GlobalTranslations {
   ///
   /// Returns the list of supported Locales
   ///
-  Iterable<Locale> supportedLocales() =>
-      _supportedLanguages.map<Locale>((lang) => Locale(lang, ''));
+  List<Locale> supportedLocales() =>
+      _supportedLanguages.map<Locale>((lang) => Locale(lang)).toList();
 
   ///
   /// Returns the translation that corresponds to the [key]
@@ -37,7 +37,7 @@ class GlobalTranslations {
   ///
   /// Returns the current language code
   ///
-  get currentLanguage => _locale == null ? '' : _locale.languageCode;
+  get currentLanguage => _locale == null ? 'en' : _locale.languageCode;
 
   ///
   /// Returns the current Locale
@@ -57,11 +57,11 @@ class GlobalTranslations {
   /// ----------------------------------------------------------
   /// Method that saves/restores the preferred language
   /// ----------------------------------------------------------
-  getPreferredLanguage() async {
+  _getPreferredLanguage() async {
     return _getApplicationSavedInformation('language');
   }
 
-  setPreferredLanguage(String lang) async {
+  _setPreferredLanguage(String lang) async {
     return _setApplicationSavedInformation('language', lang);
   }
 
@@ -72,7 +72,7 @@ class GlobalTranslations {
       [String newLanguage, bool saveInPrefs = false]) async {
     String language = newLanguage;
     if (language == null) {
-      language = await getPreferredLanguage();
+      language = await _getPreferredLanguage();
     }
 
     // Set the locale
@@ -88,7 +88,7 @@ class GlobalTranslations {
 
     // If we are asked to save the new language in the application preferences
     if (saveInPrefs) {
-      await setPreferredLanguage(language);
+      await _setPreferredLanguage(language);
     }
 
     // If there is a callback to invoke to notify that a language has changed

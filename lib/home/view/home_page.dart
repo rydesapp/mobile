@@ -3,14 +3,12 @@ import 'package:mobile/global/ui/ui.dart';
 import 'package:mobile/global/utils/i18n.dart';
 import 'package:mobile/global/widgets/logo.dart';
 import 'package:mobile/helpers/images.gen.dart';
+import 'package:mobile/home/widgets/widgets.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     AppTheme.isDark = Theme.of(context).brightness == Brightness.dark;
-
     return Scaffold(
       body: DecoratedBox(
         decoration: BoxDecoration(
@@ -33,8 +31,8 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Logo(),
-                  SizedBox(
-                    height: defaultSpacing,
+                  const SizedBox(
+                    height: Spacing.defaultSpacing,
                   ),
                   Text(
                     i18n.text('landing_sentence'),
@@ -46,21 +44,22 @@ class HomePage extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: bottomLargeSpace),
+              padding: const EdgeInsets.only(bottom: Spacing.bottomLargeSpace),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  RaisedButton(
+                  RectBtn(
                     child: Text(
                       i18n.text('sign_up'),
                     ),
                     onPressed: () => {},
                   ),
-                  SizedBox(
-                    width: defaultSpacing,
+                  const SizedBox(
+                    width: Spacing.defaultSpacing,
                   ),
-                  RaisedButton(
+                  RectBtn(
+                    color: accentColor,
                     child: Text(
                       i18n.text('sign_in'),
                     ),
