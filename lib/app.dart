@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/blocs/settings/settings_bloc.dart';
 import 'package:mobile/global/utils/i18n.dart';
-import 'home/view/view.dart';
+import 'pages/home/view/view.dart';
 import 'package:mobile/global/ui/ui.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

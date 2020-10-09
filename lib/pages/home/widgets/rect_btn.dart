@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:mobile/global/ui/ui.dart';
+part of 'widgets.dart';
 
 class RectBtn extends StatelessWidget {
   final Widget child;
