@@ -1,5 +1,9 @@
 {
   "landing_sentence": "Transportation reimagined",
   "sign_up": "Sign Up",
-  "sign_in": "Sign In"
+  "sign_in": "Sign In",
+  "forgot_password": "Forgot password",
+  "email_or_username": "Email or username",
+  "password": "Password",
+  "back": "Back"
 }

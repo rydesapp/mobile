@@ -3,6 +3,7 @@ class Spacing {
 
   static const defaultSpacing = 16.0;
   static const bottomLargeSpace = 60.0;
+  static const labelSpacing = 4.0;
 }
 
 class Borders {

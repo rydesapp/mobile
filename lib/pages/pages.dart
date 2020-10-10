@@ -1,1 +1,3 @@
-export 'home/view//view.dart';
+export 'home/home.dart';
+export 'sign_in/sign_in.dart';
+export 'forgot_password/forgot_password.dart';

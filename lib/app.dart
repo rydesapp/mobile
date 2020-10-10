@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/blocs/settings/settings_bloc.dart';
-import 'package:mobile/global/utils/i18n.dart';
-import 'pages/home/view/view.dart';
-import 'package:mobile/global/ui/ui.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:mobile/blocs/blocs.dart';
+import 'package:mobile/pages/pages.dart';
+import 'package:mobile/global/global.dart';
 
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SettingsBloc, SettingsState>(
       builder: (context, state) => MaterialApp(
-        home: HomePage(),
         themeMode: state.themeMode,
         theme: AppTheme.baseTheme,
         darkTheme: AppTheme.darkTheme,
@@ -21,6 +20,11 @@ class App extends StatelessWidget {
         ],
         supportedLocales: i18n.supportedLocales(),
         locale: state.local,
+        routes: {
+          '/': (_) => HomePage(),
+          '/sign_in': (_) => SignInPage(),
+          '/reset_password': (_) => ForgotPasswordPage(),
+        },
       ),
     );
   }

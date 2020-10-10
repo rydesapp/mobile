@@ -8,6 +8,11 @@ class AppTheme {
 
   static final baseTheme = applyBranding(ThemeData(
     fontFamily: fontFamily,
+    textTheme: TextTheme(
+      bodyText1: TextStyle(fontSize: 16),
+      bodyText2: TextStyle(fontSize: 16),
+      headline6: TextStyle(color: lightColor),
+    ),
   ));
 
   static final lightTheme = baseTheme.copyWith(
@@ -27,9 +32,7 @@ class AppTheme {
     return theme.copyWith(
       primaryColor: primaryColor,
       accentColor: accentColor,
-      textTheme: theme.textTheme.copyWith(
-        headline6: theme.textTheme.headline6.copyWith(color: lightColor),
-      ),
+      textTheme: theme.textTheme.copyWith(),
       buttonTheme: theme.buttonTheme.copyWith(
         buttonColor: primaryColor,
         colorScheme: ColorScheme.light(),

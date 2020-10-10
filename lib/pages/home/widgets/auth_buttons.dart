@@ -25,7 +25,7 @@ class AuthButtons extends StatelessWidget {
           child: Text(
             i18n.text('sign_in'),
           ),
-          onPressed: () => {},
+          onPressed: () => {Navigator.of(context).pushNamed('/sign_in')},
         )
       ],
     );

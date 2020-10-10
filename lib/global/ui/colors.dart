@@ -6,3 +6,4 @@ const lightColor = Color(0xFF868993);
 const lighterColor = Color(0xFFFFFFFF);
 const darkColor = Color(0xFF2A2D36);
 const darkerColor = Color(0xFF1D1F25);
+const logoBorderColor = Color(0xFF3B424D);
