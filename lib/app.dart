@@ -21,9 +21,9 @@ class App extends StatelessWidget {
         supportedLocales: i18n.supportedLocales(),
         locale: state.local,
         routes: {
-          '/': (_) => HomePage(),
-          '/sign_in': (_) => SignInPage(),
-          '/reset_password': (_) => ForgotPasswordPage(),
+          AppRoutes.HOME: (_) => HomePage(),
+          AppRoutes.SIGN_IN: (_) => SignInPage(),
+          AppRoutes.RESET_PASSWORD: (_) => ForgotPasswordPage(),
         },
       ),
     );

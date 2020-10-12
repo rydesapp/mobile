@@ -5,5 +5,9 @@
   "forgot_password": "Forgot password",
   "email_or_username": "Email or username",
   "password": "Password",
-  "back": "Back"
+  "back": "Back",
+  "validation.required": "{{field}} is required",
+  "validation.email": "{{field}} should be a valid email",
+  "validation.min": "{{field}} must be more than {{min}}",
+  "validation.max": "{{field}} must be less than {{max}}"
 }

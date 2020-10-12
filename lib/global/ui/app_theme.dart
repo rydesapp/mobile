@@ -6,14 +6,22 @@ class AppTheme {
   AppTheme._();
   static bool isDark = false;
 
-  static final baseTheme = applyBranding(ThemeData(
-    fontFamily: fontFamily,
-    textTheme: TextTheme(
-      bodyText1: TextStyle(fontSize: 16),
-      bodyText2: TextStyle(fontSize: 16),
-      headline6: TextStyle(color: lightColor),
+  static final baseTheme = applyBranding(
+    ThemeData(
+      fontFamily: fontFamily,
+      textTheme: TextTheme(
+        bodyText1: TextStyle(fontSize: 16),
+        bodyText2: TextStyle(fontSize: 16),
+        headline6: TextStyle(color: lightColor),
+      ),
+      snackBarTheme: SnackBarThemeData(
+        contentTextStyle: TextStyle(
+          fontSize: 16,
+          color: lighterColor,
+        ),
+      ),
     ),
-  ));
+  );
 
   static final lightTheme = baseTheme.copyWith(
     scaffoldBackgroundColor: lighterColor,
@@ -24,6 +32,8 @@ class AppTheme {
     scaffoldBackgroundColor: darkerColor,
     brightness: Brightness.dark,
   );
+
+  static get themedTextColor => AppTheme.isDark ? lighterColor : darkColor;
 
   static get fontFamily =>
       i18n.currentLanguage == 'en' ? 'Geomanist' : 'NotoSansArabicUI';

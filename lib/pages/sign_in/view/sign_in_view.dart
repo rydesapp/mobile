@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile/blocs/sign_in/sign_in_bloc.dart';
 import 'package:mobile/global/global.dart';
-import 'package:mobile/global/widgets/submit_button.dart';
+import 'package:mobile/pages/sign_in/view/sign_in_form_view.dart';
 
 class SignInView extends StatelessWidget {
-  const SignInView({Key key}) : super(key: key);
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    final textTheme = Theme.of(context).textTheme;
-    final color = AppTheme.isDark ? lighterColor : darkColor;
     return SingleChildScrollView(
       child: Column(
         children: [
           LogoWithAccentTitle(
-            title: i18n.text('sign_in'),
+            title: AppLocaleStrings.signIn,
           ),
           Padding(
             padding: const EdgeInsets.only(
@@ -23,56 +21,45 @@ class SignInView extends StatelessWidget {
               right: Spacing.defaultSpacing,
               bottom: Spacing.defaultSpacing,
             ),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: height * .1,
-                ),
-                Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CTextField(
-                      text: i18n.text('email_or_username'),
-                      inputType: TextInputType.emailAddress,
-                    ),
-                    SizedBox(
-                      height: Spacing.defaultSpacing,
-                    ),
-                    CTextField(
-                      text: i18n.text('password'),
-                      obscureText: true,
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: height * .1,
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    FlatButton(
-                      padding: EdgeInsets.zero,
-                      onPressed: () => Navigator.of(context).pushNamed(
-                        '/reset_password',
-                      ),
-                      child: Text(
-                        i18n.text('forgot_password') + '?',
-                        style: textTheme.bodyText2.copyWith(color: color),
-                      ),
-                    ),
-                    SubmitButton(
-                      onPressed: () => {},
-                    )
-                  ],
-                )
-              ],
+            child: BlocConsumer<SignInBloc, SignInState>(
+              listener: (context, state) {
+                if (state is SignInError) {
+                  Scaffold.of(context).showSnackBar(
+                    SnackBar(
+                        content: Text(
+                      state.message,
+                    )),
+                  );
+                }
+                if (state is SignInSuccess) {
+                  Scaffold.of(context).showSnackBar(
+                    SnackBar(
+                        content: Text(
+                      'Signed in, redirecting...',
+                    )),
+                  );
+                  Navigator.of(context)
+                      .pushReplacementNamed(AppRoutes.RESET_PASSWORD);
+                }
+              },
+              builder: (context, state) {
+                if (state is SignInLoading) {
+                  return loadingProgress(context);
+                }
+                return SignInFormView(formKey: _formKey);
+              },
             ),
           ),
         ],
       ),
     );
   }
+
+  loadingProgress(context) => Container(
+        alignment: Alignment.center,
+        height: MediaQuery.of(context).size.height * 0.4,
+        child: CircularProgressIndicator(
+          strokeWidth: 3,
+        ),
+      );
 }

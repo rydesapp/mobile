@@ -27,11 +27,17 @@ class GlobalTranslations {
   ///
   /// Returns the translation that corresponds to the [key]
   ///
-  String text(String key) {
+  String text(String key, [Map<String, String> props]) {
     // Return the requested string
-    return (_localizedValues == null || _localizedValues[key] == null)
-        ? '** $key not found'
-        : _localizedValues[key];
+    if (_localizedValues == null || _localizedValues[key] == null) {
+      return '** $key not found';
+    }
+    String text = _localizedValues[key];
+    props?.forEach((key, value) {
+      text = text.replaceAll('{{$key}}', value);
+    });
+
+    return text;
   }
 
   ///

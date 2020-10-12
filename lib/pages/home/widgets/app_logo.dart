@@ -16,7 +16,7 @@ class AppLogo extends StatelessWidget {
             height: Spacing.defaultSpacing,
           ),
           Text(
-            i18n.text('landing_sentence'),
+            AppLocaleStrings.landingSentence,
             style: Theme.of(context).textTheme.headline6.copyWith(
                   fontWeight: FontWeight.normal,
                 ),

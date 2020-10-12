@@ -4,21 +4,27 @@ import 'package:mobile/global/ui/ui.dart';
 
 class CTextField extends StatelessWidget {
   final String text;
+  final String intialValue;
   final TextInputType inputType;
   final TextEditingController controller;
   final bool obscureText;
-
-  const CTextField({
-    Key key,
-    this.text,
-    this.inputType,
-    this.controller,
-    this.obscureText = false,
-  }) : super(key: key);
+  final Function validator;
+  final Function onChanged;
+  const CTextField(
+      {Key key,
+      this.text,
+      this.intialValue,
+      this.inputType,
+      this.controller,
+      this.obscureText = false,
+      this.onChanged,
+      this.validator})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final color = AppTheme.isDark ? lighterColor : darkColor;
+    final fieldColor = AppTheme.isDark ? darkColor : lightColor;
     final textStyle =
         Theme.of(context).textTheme.bodyText2.copyWith(color: color);
 
@@ -29,20 +35,23 @@ class CTextField extends StatelessWidget {
         SizedBox(
           height: Spacing.labelSpacing,
         ),
-        _buildField(textStyle),
+        _buildField(textStyle, fieldColor),
       ],
     );
   }
 
-  TextField _buildField(TextStyle textStyle) {
-    return TextField(
+  TextFormField _buildField(TextStyle textStyle, Color color) {
+    return TextFormField(
       keyboardType: inputType,
       controller: controller,
       autocorrect: false,
       obscureText: obscureText,
       style: textStyle,
+      validator: validator,
+      onChanged: onChanged,
+      initialValue: intialValue,
       decoration: InputDecoration(
-        fillColor: darkColor,
+        fillColor: color,
         filled: true,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         border: OutlineInputBorder(

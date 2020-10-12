@@ -13,7 +13,7 @@ class AuthButtons extends StatelessWidget {
       children: [
         RectBtn(
           child: Text(
-            i18n.text('sign_up'),
+            AppLocaleStrings.signUp,
           ),
           onPressed: () => {},
         ),
@@ -23,9 +23,9 @@ class AuthButtons extends StatelessWidget {
         RectBtn(
           color: accentColor,
           child: Text(
-            i18n.text('sign_in'),
+            AppLocaleStrings.signIn,
           ),
-          onPressed: () => {Navigator.of(context).pushNamed('/sign_in')},
+          onPressed: () => {Navigator.of(context).pushNamed(AppRoutes.SIGN_IN)},
         )
       ],
     );

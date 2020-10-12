@@ -1,3 +1,3 @@
 export 'ui/ui.dart';
-export 'utils/i18n.dart';
+export 'utils/utils.dart';
 export 'widgets/widgets.dart';
