@@ -3,12 +3,12 @@ part of 'widgets.dart';
 class SignInForm extends StatelessWidget {
   final formKey;
   final emailValidation = Validation(
-    name: AppLocaleStrings.emailOrUsername,
+    name: i18n.translate.email_or_username,
     isRequired: true,
   );
 
   final passwordValidation = Validation(
-    name: AppLocaleStrings.password,
+    name: i18n.translate.password,
     isRequired: true,
     min: 6,
   );
@@ -17,7 +17,8 @@ class SignInForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = context.bloc<SignInBloc>();
+    final bloc = context.bloc<SignInCubit>();
+
     return Form(
       key: formKey,
       child: Column(
@@ -35,25 +36,25 @@ class SignInForm extends StatelessWidget {
     );
   }
 
-  CTextField buildEmailField(SignInBloc bloc) {
+  CTextField buildEmailField(SignInCubit bloc) {
     return CTextField(
       intialValue: bloc.state.email,
       text: emailValidation.name,
       inputType: TextInputType.emailAddress,
       validator: (text) => emailValidation.withUpdatedValue(text).validate(),
       onChanged: (text) {
-        bloc.add(SignInEmailChanged(text));
+        bloc.emailChanged(text);
       },
     );
   }
 
-  CTextField buildPasswordField(SignInBloc bloc) {
+  CTextField buildPasswordField(SignInCubit bloc) {
     return CTextField(
       text: passwordValidation.name,
       obscureText: true,
       validator: (text) => passwordValidation.withUpdatedValue(text).validate(),
       onChanged: (text) {
-        bloc.add(SignInPasswordChanged(text));
+        bloc.passwordChanged(text);
       },
     );
   }

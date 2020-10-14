@@ -1,4 +1,3 @@
-import 'package:mobile/global/global.dart';
 import 'package:mobile/global/utils/i18n.dart';
 
 class Validation {
@@ -29,7 +28,6 @@ class Validation {
 
   String validate() {
     final String safeValue = value ?? "";
-    print(safeValue.length);
 
     if (isRequired && (safeValue.isEmpty)) {
       return requiredMessage;
@@ -46,11 +44,11 @@ class Validation {
     return null;
   }
 
-  get requiredMessage => AppLocaleStrings.validationRequired(name);
+  get requiredMessage => i18n.translate.validationRequired(name);
 
-  get emailMessage => AppLocaleStrings.validationEmail(name);
+  get emailMessage => i18n.translate.validationEmail(name);
 
-  get minMessage => AppLocaleStrings.validationMin(name, min);
+  get minMessage => i18n.translate.validationMin(name, min);
 
-  get maxMessage => AppLocaleStrings.validationMax(name, max);
+  get maxMessage => i18n.translate.validationMax(name, max);
 }

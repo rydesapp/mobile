@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile/blocs/sign_in/sign_in_bloc.dart';
+import 'package:mobile/blocs/sign_in/sign_in.dart';
 import 'package:mobile/global/global.dart';
 import 'package:mobile/pages/sign_in/view/sign_in_form_view.dart';
+import 'package:flutter_gen/gen_l10n/translations.dart';
 
 class SignInView extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
@@ -13,7 +14,7 @@ class SignInView extends StatelessWidget {
       child: Column(
         children: [
           LogoWithAccentTitle(
-            title: AppLocaleStrings.signIn,
+            title: Translations.of(context).sign_in,
           ),
           Padding(
             padding: const EdgeInsets.only(
@@ -21,7 +22,7 @@ class SignInView extends StatelessWidget {
               right: Spacing.defaultSpacing,
               bottom: Spacing.defaultSpacing,
             ),
-            child: BlocConsumer<SignInBloc, SignInState>(
+            child: BlocConsumer<SignInCubit, SignInState>(
               listener: (context, state) {
                 if (state is SignInError) {
                   Scaffold.of(context).showSnackBar(

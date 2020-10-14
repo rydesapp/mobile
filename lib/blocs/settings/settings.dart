@@ -1,1 +1,1 @@
-export 'settings_bloc.dart';
+export 'settings_cubit.dart';

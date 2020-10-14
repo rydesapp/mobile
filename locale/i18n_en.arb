@@ -1,0 +1,71 @@
+{
+  "landing_sentence": "Transportation reimagined",
+  "@landing_sentence": {
+    "type": "text",
+    "description": "Landing page intro"
+  },
+  "sign_up": "Sign Up",
+  "@sign_up": {
+    "type": "text",
+    "description": "Sign up label"
+  },
+  "sign_in": "Sign In",
+  "@sign_in": {
+    "type": "text",
+    "description": "Sign in label"
+  },
+  "forgot_password": "Forgot password",
+  "@forgot_password": {
+    "type": "text",
+    "description": "Forgot password label"
+  },
+  "email_or_username": "Email or username",
+  "@email_or_username": {
+    "type": "text",
+    "description": "Email field label"
+  },
+  "password": "Password",
+  "@password": {
+    "type": "text",
+    "description": "Password field label"
+  },
+  "back": "Back",
+  "@back": {
+    "type": "text",
+    "description": "Back button label"
+  },
+  "validationRequired": "{field} field is required",
+  "@validationRequired": {
+    "type": "text",
+    "description": "Outputs the required message for the field",
+    "placeholders": {
+      "field": {}
+    }
+  },
+  "validationEmail": "{field} field should be a valid email",
+  "@validationEmail": {
+    "type": "text",
+    "description": "Outputs the email validation message for the field",
+    "placeholders": {
+      "field": {}
+    }
+  },
+  "validationMin": "{field} field must be more than {min}",
+  "@validationMin": {
+    "type": "text",
+    "description": "Outputs the min length validation message for the field",
+    "placeholders": {
+      "field": {},
+      "min": {}
+    }
+  },
+  "validationMax": "{field} field must be less than {max}",
+  "@validationMax": {
+    "type": "text",
+    "description": "Outputs the max length validation message for the field",
+    "placeholders": {
+      "field": {},
+      "max": {}
+    }
+  }
+}

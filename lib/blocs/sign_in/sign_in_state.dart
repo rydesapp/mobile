@@ -1,4 +1,4 @@
-part of 'sign_in_bloc.dart';
+part of 'sign_in_cubit.dart';
 
 @immutable
 abstract class SignInState {
@@ -16,13 +16,6 @@ class SignInInputChanged extends SignInState {
 
   SignInInputChanged({this.email, this.password})
       : super(email: email, password: password);
-
-  SignInInputChanged copyWith({String email, String password}) {
-    return SignInInputChanged(
-      email: email ?? this.email,
-      password: password ?? this.password,
-    );
-  }
 }
 
 class SignInLoading extends SignInState {}

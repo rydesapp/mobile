@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/translations.dart';
 
 import 'package:mobile/blocs/blocs.dart';
 import 'package:mobile/pages/pages.dart';
@@ -9,16 +9,13 @@ import 'package:mobile/global/global.dart';
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SettingsBloc, SettingsState>(
+    return BlocBuilder<SettingsCubit, SettingsState>(
       builder: (context, state) => MaterialApp(
         themeMode: state.themeMode,
         theme: AppTheme.baseTheme,
         darkTheme: AppTheme.darkTheme,
-        localizationsDelegates: [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-        ],
-        supportedLocales: i18n.supportedLocales(),
+        localizationsDelegates: Translations.localizationsDelegates,
+        supportedLocales: Translations.supportedLocales,
         locale: state.local,
         routes: {
           AppRoutes.HOME: (_) => HomePage(),

@@ -1,59 +1,41 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:ui';
 
-import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_gen/gen_l10n/translations.dart';
 
 ///
 /// Preferences related
 ///
 const String _storageKey = "MyApplication_";
-const List<String> _supportedLanguages = ['en', 'ar'];
 Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
 class GlobalTranslations {
   Locale _locale;
-  Map<dynamic, dynamic> _localizedValues;
-  VoidCallback _onLocaleChangedCallback;
 
-  ///
-  /// Returns the list of supported Locales
-  ///
-  List<Locale> supportedLocales() =>
-      _supportedLanguages.map<Locale>((lang) => Locale(lang)).toList();
+  Translations translate;
 
-  ///
-  /// Returns the translation that corresponds to the [key]
-  ///
-  String text(String key, [Map<String, String> props]) {
-    // Return the requested string
-    if (_localizedValues == null || _localizedValues[key] == null) {
-      return '** $key not found';
-    }
-    String text = _localizedValues[key];
-    props?.forEach((key, value) {
-      text = text.replaceAll('{{$key}}', value);
-    });
-
-    return text;
+  set context(BuildContext context) {
+    translate = Translations.of(context);
   }
 
   ///
   /// Returns the current language code
   ///
-  get currentLanguage => _locale == null ? 'en' : _locale.languageCode;
+  String get currentLanguage => _locale == null ? 'en' : _locale.languageCode;
 
   ///
   /// Returns the current Locale
   ///
-  get locale => _locale;
+  Locale get locale => _locale;
 
   ///
   /// One-time initialization
   ///
-  Future<Null> init([String language]) async {
+  Future<Null> init([BuildContext context, String language]) async {
+    context = context;
+
     if (_locale == null) {
       await setNewLanguage(language);
     }
@@ -87,29 +69,12 @@ class GlobalTranslations {
     }
     _locale = Locale(language, "");
 
-    // Load the language strings
-    String jsonContent =
-        await rootBundle.loadString("locale/i18n_${_locale.languageCode}.json");
-    _localizedValues = json.decode(jsonContent);
-
     // If we are asked to save the new language in the application preferences
     if (saveInPrefs) {
       await _setPreferredLanguage(language);
     }
 
-    // If there is a callback to invoke to notify that a language has changed
-    if (_onLocaleChangedCallback != null) {
-      _onLocaleChangedCallback();
-    }
-
     return null;
-  }
-
-  ///
-  /// Callback to be invoked when the user changes the language
-  ///
-  set onLocaleChangedCallback(VoidCallback callback) {
-    _onLocaleChangedCallback = callback;
   }
 
   ///

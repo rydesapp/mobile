@@ -1,0 +1,4 @@
+arb-dir: locale
+template-arb-file: i18n_en.arb
+output-localization-file: translations.dart
+output-class: Translations

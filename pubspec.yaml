@@ -30,6 +30,7 @@ dependencies:
   flutter_bloc: ^6.0.0
   http: ^0.12.1
   shared_preferences: ^0.5.12
+  intl: ^0.16.0
 
 dev_dependencies:
   flutter_test:
@@ -50,7 +51,6 @@ flutter:
   assets:
      - assets/images/
      - assets/images/global/
-     - locale/
 
   fonts:
     - family: Geomanist
@@ -83,3 +83,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  generate: true

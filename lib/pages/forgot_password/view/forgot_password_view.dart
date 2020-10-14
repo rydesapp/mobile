@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/blocs/blocs.dart';
 import 'package:mobile/global/global.dart';
-import 'package:mobile/global/widgets/submit_button.dart';
 import 'package:mobile/global/widgets/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile/pages/forgot_password/forgot_password.dart';
 
 class ForgotPasswordView extends StatelessWidget {
-  const ForgotPasswordView({Key key}) : super(key: key);
+  ForgotPasswordView({Key key}) : super(key: key);
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    final textTheme = Theme.of(context).textTheme;
-    final color = AppTheme.isDark ? lighterColor : darkColor;
-
     return SingleChildScrollView(
       child: Column(
         children: [
           LogoWithAccentTitle(
-            title: AppLocaleStrings.forgotPassword,
+            title: i18n.translate.forgot_password,
           ),
           Padding(
             padding: const EdgeInsets.only(
@@ -24,41 +23,32 @@ class ForgotPasswordView extends StatelessWidget {
               right: Spacing.defaultSpacing,
               bottom: Spacing.defaultSpacing,
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(
-                  height: height * 0.1,
-                ),
-                CTextField(
-                  text: AppLocaleStrings.emailOrUsername,
-                  inputType: TextInputType.emailAddress,
-                ),
-                SizedBox(
-                  height: (height * 0.2) -
-                      Spacing.defaultSpacing +
-                      Spacing.labelSpacing,
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    FlatButton(
-                      padding: EdgeInsets.zero,
-                      onPressed: () => Navigator.of(context).pop(),
-                      child: Text(
-                        AppLocaleStrings.back,
-                        style: textTheme.bodyText2.copyWith(color: color),
-                      ),
-                    ),
-                    SubmitButton(onPressed: () => {})
-                  ],
-                ),
-              ],
-            ),
+            child: BlocConsumer<ForgotPasswordCubit, ForgotPasswordState>(
+                builder: (context, state) {
+              if (state is ForgotPasswordLoading) {
+                return loadingProgress(context);
+              }
+              return ForgotPasswordFormView(
+                formKey: _formKey,
+              );
+            }, listener: (context, state) {
+              if (state is ForgotPasswordSuccess) {
+                Scaffold.of(context).showSnackBar(SnackBar(
+                  content: Text(state.message),
+                ));
+              }
+            }),
           ),
         ],
       ),
     );
   }
+
+  loadingProgress(context) => Container(
+        alignment: Alignment.center,
+        height: MediaQuery.of(context).size.height * 0.4,
+        child: CircularProgressIndicator(
+          strokeWidth: 3,
+        ),
+      );
 }

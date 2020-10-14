@@ -1,4 +1,4 @@
-part of 'settings_bloc.dart';
+part of 'settings_cubit.dart';
 
 @immutable
 abstract class SettingsState {
