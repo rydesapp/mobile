@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile/blocs/blocs.dart';
 import 'package:mobile/blocs/sign_in/sign_in.dart';
 import 'package:mobile/global/global.dart';
 import 'package:mobile/global/widgets/form/form_loading.dart';
@@ -33,14 +34,8 @@ class SignInView extends StatelessWidget {
                   );
                 }
                 if (state is SignInSuccess) {
-                  Scaffold.of(context).showSnackBar(
-                    SnackBar(
-                        content: Text(
-                      'Signed in, redirecting...',
-                    )),
-                  );
-                  Navigator.of(context)
-                      .pushReplacementNamed(AppRoutes.RESET_PASSWORD);
+                  context.bloc<AuthenticationCubit>().login();
+                  Navigator.of(context).pop();
                 }
               },
               builder: (context, state) {

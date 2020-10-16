@@ -7,9 +7,9 @@ import 'package:mobile/global/utils/i18n.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await i18n.init();
-  final app = BlocProvider<SettingsCubit>(
-    create: (_) => SettingsCubit(),
-    child: App(),
-  );
+  final app = MultiBlocProvider(providers: [
+    BlocProvider(create: (_) => SettingsCubit()),
+    BlocProvider(create: (_) => AuthenticationCubit()),
+  ], child: App());
   runApp(app);
 }
