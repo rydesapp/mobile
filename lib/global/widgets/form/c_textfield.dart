@@ -23,8 +23,8 @@ class CTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = AppTheme.isDark ? lighterColor : darkColor;
-    final fieldColor = AppTheme.isDark ? darkColor : lightColor;
+    final color = AppTheme.isDark ? lightestColor : darkColor;
+    final fieldColor = AppTheme.isDark ? darkColor : lighterColor;
     final textStyle =
         Theme.of(context).textTheme.bodyText2.copyWith(color: color);
 
@@ -58,6 +58,8 @@ class CTextField extends StatelessWidget {
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.circular(Borders.radius),
         ),
+        contentPadding: EdgeInsets.symmetric(
+            horizontal: Spacing.defaultSpacing, vertical: 0),
       ),
     );
   }

@@ -12,7 +12,7 @@ class ForgotPasswordFormView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    final color = AppTheme.isDark ? lighterColor : darkColor;
+    final color = AppTheme.isDark ? lightestColor : darkColor;
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

@@ -22,7 +22,22 @@
   "email_or_username": "Email or username",
   "@email_or_username": {
     "type": "text",
+    "description": "Email or username field label"
+  },
+  "email": "Email",
+  "@email": {
+    "type": "text",
     "description": "Email field label"
+  },
+  "first_name": "First name",
+  "@first_name": {
+    "type": "text",
+    "description": "First name field label"
+  },
+  "last_name": "Last name",
+  "@last_name": {
+    "type": "text",
+    "description": "Last name field label"
   },
   "password": "Password",
   "@password": {
@@ -33,6 +48,11 @@
   "@back": {
     "type": "text",
     "description": "Back button label"
+  },
+  "login_error":"Invalid username or password",
+  "@login_error":{
+    "type":"text",
+    "description":"Message when the username or password is invalid"
   },
   "validationRequired": "{field} field is required",
   "@validationRequired": {

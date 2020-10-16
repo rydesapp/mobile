@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/blocs/sign_in/sign_in.dart';
 import 'package:mobile/global/global.dart';
+import 'package:mobile/global/widgets/form/form_loading.dart';
 import 'package:mobile/pages/sign_in/view/sign_in_form_view.dart';
-import 'package:flutter_gen/gen_l10n/translations.dart';
 
 class SignInView extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
@@ -14,7 +14,7 @@ class SignInView extends StatelessWidget {
       child: Column(
         children: [
           LogoWithAccentTitle(
-            title: Translations.of(context).sign_in,
+            title: i18n.translate.sign_in,
           ),
           Padding(
             padding: const EdgeInsets.only(
@@ -45,7 +45,7 @@ class SignInView extends StatelessWidget {
               },
               builder: (context, state) {
                 if (state is SignInLoading) {
-                  return loadingProgress(context);
+                  return FormLoading();
                 }
                 return SignInFormView(formKey: _formKey);
               },
@@ -55,12 +55,4 @@ class SignInView extends StatelessWidget {
       ),
     );
   }
-
-  loadingProgress(context) => Container(
-        alignment: Alignment.center,
-        height: MediaQuery.of(context).size.height * 0.4,
-        child: CircularProgressIndicator(
-          strokeWidth: 3,
-        ),
-      );
 }

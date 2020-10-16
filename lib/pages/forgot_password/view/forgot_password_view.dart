@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/blocs/blocs.dart';
 import 'package:mobile/global/global.dart';
-import 'package:mobile/global/widgets/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/pages/forgot_password/forgot_password.dart';
 
@@ -26,7 +25,7 @@ class ForgotPasswordView extends StatelessWidget {
             child: BlocConsumer<ForgotPasswordCubit, ForgotPasswordState>(
                 builder: (context, state) {
               if (state is ForgotPasswordLoading) {
-                return loadingProgress(context);
+                return FormLoading();
               }
               return ForgotPasswordFormView(
                 formKey: _formKey,
@@ -44,11 +43,4 @@ class ForgotPasswordView extends StatelessWidget {
     );
   }
 
-  loadingProgress(context) => Container(
-        alignment: Alignment.center,
-        height: MediaQuery.of(context).size.height * 0.4,
-        child: CircularProgressIndicator(
-          strokeWidth: 3,
-        ),
-      );
 }

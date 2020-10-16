@@ -15,7 +15,7 @@ class AuthButtons extends StatelessWidget {
           child: Text(
             i18n.translate.sign_up,
           ),
-          onPressed: () => {},
+          onPressed: () => {Navigator.of(context).pushNamed(AppRoutes.SIGN_UP)},
         ),
         const SizedBox(
           width: Spacing.defaultSpacing,

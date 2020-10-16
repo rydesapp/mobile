@@ -21,6 +21,7 @@ class App extends StatelessWidget {
           AppRoutes.HOME: (_) => HomePage(),
           AppRoutes.SIGN_IN: (_) => SignInPage(),
           AppRoutes.RESET_PASSWORD: (_) => ForgotPasswordPage(),
+          AppRoutes.SIGN_UP: (_) => SignUpPage(),
         },
       ),
     );

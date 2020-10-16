@@ -1,11 +1,14 @@
 part of 'sign_in_cubit.dart';
 
 @immutable
-abstract class SignInState {
+abstract class SignInState extends Equatable {
   final String email;
   final String password;
 
   SignInState({this.email, this.password});
+
+  @override
+  List<Object> get props => [email, password];
 }
 
 class SignInInitial extends SignInState {}

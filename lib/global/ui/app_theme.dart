@@ -17,14 +17,20 @@ class AppTheme {
       snackBarTheme: SnackBarThemeData(
         contentTextStyle: TextStyle(
           fontSize: 16,
-          color: lighterColor,
+          color: lightestColor,
         ),
+      ),
+      pageTransitionsTheme: PageTransitionsTheme(
+        builders: <TargetPlatform, PageTransitionsBuilder>{
+          TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+          TargetPlatform.android: ZoomPageTransitionsBuilder(),
+        },
       ),
     ),
   );
 
   static final lightTheme = baseTheme.copyWith(
-    scaffoldBackgroundColor: lighterColor,
+    scaffoldBackgroundColor: lightestColor,
     brightness: Brightness.light,
   );
 
@@ -33,7 +39,7 @@ class AppTheme {
     brightness: Brightness.dark,
   );
 
-  static get themedTextColor => AppTheme.isDark ? lighterColor : darkColor;
+  static get themedTextColor => AppTheme.isDark ? lightestColor : darkColor;
 
   static get fontFamily =>
       i18n.currentLanguage == 'en' ? 'Geomanist' : 'NotoSansArabicUI';
