@@ -1,7 +1,15 @@
 part of 'widgets.dart';
 
-class SignUpForm extends StatelessWidget {
+class SignUpForm extends StatefulWidget {
   final GlobalKey formKey;
+
+  SignUpForm({Key key, this.formKey}) : super(key: key);
+
+  @override
+  _SignUpFormState createState() => _SignUpFormState();
+}
+
+class _SignUpFormState extends State<SignUpForm> {
   final emailValidation = Validation(
     name: i18n.translate.email_or_username,
     isEmail: true,
@@ -24,15 +32,28 @@ class SignUpForm extends StatelessWidget {
     isRequired: true,
   );
 
+  FocusNode firstNameFocus;
+
+  FocusNode lastNameFocus;
+
+  FocusNode passwordFocus;
+
   SignUpCubit bloc;
 
-  SignUpForm({Key key, this.formKey}) : super(key: key);
+  @override
+  void initState() {
+    super.initState();
+
+    firstNameFocus = FocusNode();
+    lastNameFocus = FocusNode();
+    passwordFocus = FocusNode();
+    bloc = context.bloc<SignUpCubit>();
+  }
 
   @override
   Widget build(BuildContext context) {
-    bloc = context.bloc<SignUpCubit>();
     return Form(
-      key: formKey,
+      key: widget.formKey,
       child: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -63,6 +84,9 @@ class SignUpForm extends StatelessWidget {
       inputType: TextInputType.emailAddress,
       validator: (text) => emailValidation.withUpdatedValue(text).validate(),
       onChanged: bloc.emailChanged,
+      inputAction: TextInputAction.next,
+      onFieldSubmitted: (_) =>
+          FocusScope.of(context).requestFocus(firstNameFocus),
     );
   }
 
@@ -73,6 +97,10 @@ class SignUpForm extends StatelessWidget {
       validator: (text) =>
           firstNameValidation.withUpdatedValue(text).validate(),
       onChanged: bloc.firstNameChanged,
+      focusNode: firstNameFocus,
+      inputAction: TextInputAction.next,
+      onFieldSubmitted: (_) =>
+          FocusScope.of(context).requestFocus(lastNameFocus),
     );
   }
 
@@ -82,6 +110,10 @@ class SignUpForm extends StatelessWidget {
       text: lastNameValidation.name,
       validator: (text) => lastNameValidation.withUpdatedValue(text).validate(),
       onChanged: bloc.lastNameChanged,
+      focusNode: lastNameFocus,
+      inputAction: TextInputAction.next,
+      onFieldSubmitted: (_) =>
+          FocusScope.of(context).requestFocus(passwordFocus),
     );
   }
 
@@ -91,6 +123,15 @@ class SignUpForm extends StatelessWidget {
       obscureText: true,
       validator: (text) => passwordValidation.withUpdatedValue(text).validate(),
       onChanged: bloc.passwordChanged,
+      focusNode: passwordFocus,
     );
+  }
+
+  @override
+  void dispose() {
+    firstNameFocus.dispose();
+    lastNameFocus.dispose();
+    passwordFocus.dispose();
+    super.dispose();
   }
 }

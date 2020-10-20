@@ -2,8 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:mobile/api/repos/rydes_repo.dart';
-import 'package:mobile/global/utils/i18n.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 part 'sign_in_state.dart';
 

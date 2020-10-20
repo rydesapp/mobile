@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:mobile/api/repos/rydes_repo.dart';
 import 'package:mobile/blocs/blocs.dart';
 import 'package:mobile/blocs/sign_in/sign_in.dart';

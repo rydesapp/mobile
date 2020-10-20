@@ -14,7 +14,7 @@ class RydesRepo {
   Future register(String email, String password) async {
     QueryResult result = await _graphQLclient.query(
       QueryOptions(
-          document: parseString(loginQuery),
+          document: parseString(signUpMutation),
           fetchPolicy: FetchPolicy.networkOnly,
           variables: {
             'email': email,

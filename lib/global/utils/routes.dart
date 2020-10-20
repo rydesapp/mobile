@@ -5,5 +5,4 @@ class AppRoutes {
   static const String SIGN_IN = "/sign_in";
   static const String SIGN_UP = "/sign_up";
   static const String RESET_PASSWORD = "/reset_password";
-  static const String MAIN = '/main';
 }

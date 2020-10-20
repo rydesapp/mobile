@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mobile/gen/assets.gen.dart';
 import 'package:mobile/global/ui/ui.dart';
-import 'package:mobile/helpers/images.gen.dart';
 
 class Logo extends StatelessWidget {
   final double width, height;
@@ -9,16 +10,11 @@ class Logo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final image = AppTheme.isDark ? IMG.global.darkLogoPNG : IMG.global.logoPNG;
-    return Container(
-      width: width,
+    final image = AppTheme.isDark ? Assets.images.darkLogo : Assets.images.logo;
+    return SvgPicture.asset(
+      image,
       height: height,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(image),
-          fit: BoxFit.scaleDown,
-        ),
-      ),
+      width: width,
     );
   }
 }

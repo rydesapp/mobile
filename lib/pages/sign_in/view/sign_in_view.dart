@@ -35,7 +35,8 @@ class SignInView extends StatelessWidget {
                 }
                 if (state is SignInSuccess) {
                   context.bloc<AuthenticationCubit>().login();
-                  Navigator.of(context).pop();
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                      AppRoutes.HOME, (route) => false);
                 }
               },
               builder: (context, state) {

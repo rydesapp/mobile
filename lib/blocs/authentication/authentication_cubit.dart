@@ -7,10 +7,11 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   AuthenticationCubit() : super(AuthenticationInitial());
 
   login() {
-    emit(AuthenticationChanged(loggedIn: true));
+    
+    emit(AuthenticationChanged(authStatus: AuthStatus.loggedIn));
   }
 
   logout() {
-    emit(AuthenticationChanged(loggedIn: false));
+    emit(AuthenticationChanged(authStatus: AuthStatus.guest));
   }
 }

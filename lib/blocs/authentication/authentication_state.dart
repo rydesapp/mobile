@@ -1,8 +1,10 @@
 part of 'authentication_cubit.dart';
 
+enum AuthStatus { loggedIn, guest }
+
 abstract class AuthenticationState extends Equatable {
-  final bool loggedIn;
-  const AuthenticationState({this.loggedIn = false});
+  final AuthStatus authStatus;
+  const AuthenticationState({this.authStatus = AuthStatus.guest});
 
   @override
   List<Object> get props => [];
@@ -11,7 +13,7 @@ abstract class AuthenticationState extends Equatable {
 class AuthenticationInitial extends AuthenticationState {}
 
 class AuthenticationChanged extends AuthenticationState {
-  final bool loggedIn;
+  final AuthStatus authStatus;
 
-  AuthenticationChanged({this.loggedIn}) : super(loggedIn: loggedIn);
+  AuthenticationChanged({this.authStatus}) : super(authStatus: authStatus);
 }

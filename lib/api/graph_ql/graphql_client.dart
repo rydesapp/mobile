@@ -1,7 +1,7 @@
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 const Map<String, String> apiLinks = {
-  "dev": "http://10.0.2.2:1234/",
+  "dev": "http://192.168.1.122:1234/",
   "prod": "https://drivees.herokuapp.com/api"
 };
 

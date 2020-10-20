@@ -8,18 +8,27 @@ class CTextField extends StatelessWidget {
   final TextInputType inputType;
   final TextEditingController controller;
   final bool obscureText;
+  final bool autoFocus;
+  final TextInputAction inputAction;
+  final FocusNode focusNode;
   final Function validator;
   final Function onChanged;
-  const CTextField(
-      {Key key,
-      this.text,
-      this.intialValue,
-      this.inputType,
-      this.controller,
-      this.obscureText = false,
-      this.onChanged,
-      this.validator})
-      : super(key: key);
+  final Function onFieldSubmitted;
+
+  const CTextField({
+    Key key,
+    this.text,
+    this.intialValue,
+    this.inputType,
+    this.controller,
+    this.obscureText = false,
+    this.onChanged,
+    this.validator,
+    this.onFieldSubmitted,
+    this.autoFocus = false,
+    this.focusNode,
+    this.inputAction = TextInputAction.done,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +51,7 @@ class CTextField extends StatelessWidget {
 
   TextFormField _buildField(TextStyle textStyle, Color color) {
     return TextFormField(
+      focusNode: focusNode,
       keyboardType: inputType,
       controller: controller,
       autocorrect: false,
@@ -50,6 +60,9 @@ class CTextField extends StatelessWidget {
       validator: validator,
       onChanged: onChanged,
       initialValue: intialValue,
+      onFieldSubmitted: onFieldSubmitted,
+      autofocus: autoFocus,
+      textInputAction: inputAction,
       decoration: InputDecoration(
         fillColor: color,
         filled: true,

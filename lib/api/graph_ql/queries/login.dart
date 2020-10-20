@@ -1,10 +1,12 @@
 part of 'queries.dart';
 
-final loginQuery = '''
-query{
-  rates(currency:"JOD"){
-    currency,
-    rate
-  }
+final signUpMutation = '''
+mutation{
+  signUp(user:{
+    email:"a@a.com",
+    firstName: "test",
+    lastName:"test",
+    password:"aaaaaa"
+  }){uuid}
 }
 ''';
