@@ -24,9 +24,7 @@ class SignInInputChanged extends SignInState {
 class SignInLoading extends SignInState {}
 
 class SignInSuccess extends SignInState {
-  final bool loggedIn;
-
-  SignInSuccess(this.loggedIn);
+  SignInSuccess();
 }
 
 class SignInError extends SignInState {

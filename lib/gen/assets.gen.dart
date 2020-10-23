@@ -21,6 +21,7 @@ class Assets {
 
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const String mapStyle = 'assets/map_style.txt';
+  static const String mapStyleDark = 'assets/map_style_dark.txt';
 }
 
 class AssetGenImage extends AssetImage {

@@ -12,8 +12,11 @@ class RootPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthenticationCubit, AuthenticationState>(
-      builder: (context, state) =>
-          state.authStatus == AuthStatus.guest ? LandingPage() : HomePage(),
+      builder: (context, state) {
+        return state.authStatus == AuthStatus.guest
+            ? LandingPage()
+            : HomePage();
+      },
     );
   }
 }

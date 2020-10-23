@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:mobile/gen/assets.gen.dart';
+import 'package:mobile/global/ui/ui.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -16,7 +17,9 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    rootBundle.loadString(Assets.mapStyle).then((string) {
+    rootBundle
+        .loadString(AppTheme.isDark ? Assets.mapStyleDark : Assets.mapStyle)
+        .then((string) {
       _mapStyle = string;
     });
   }
@@ -28,7 +31,7 @@ class _HomePageState extends State<HomePage> {
         child: GoogleMap(
           initialCameraPosition: CameraPosition(
             target: _center,
-            zoom: 14.0,
+            zoom: 18.0,
           ),
           onMapCreated: (cont) {
             _controller = cont;

@@ -2,8 +2,7 @@ import 'dart:convert';
 
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:gql/language.dart';
-import 'package:mobile/api/graph_ql/graphql_client.dart';
-import 'package:mobile/api/graph_ql/queries/queries.dart';
+import 'package:mobile/api/graphql/graphql.dart';
 import 'package:http/http.dart' as http;
 
 class RydesRepo {
@@ -11,15 +10,29 @@ class RydesRepo {
 
   RydesRepo._();
 
-  Future register(String email, String password) async {
-    QueryResult result = await _graphQLclient.query(
-      QueryOptions(
+  Future register(
+      String email, String firstName, String lastName, String password) async {
+    QueryResult result = await _graphQLclient.mutate(
+      MutationOptions(
           document: parseString(signUpMutation),
           fetchPolicy: FetchPolicy.networkOnly,
           variables: {
             'email': email,
+            'firstName': firstName,
+            'lastName': lastName,
             'password': password,
           }),
+    );
+    if (!result.hasException || result.data != null) return result.data;
+    return {};
+  }
+
+  Future me() async {
+    QueryResult result = await _graphQLclient.query(
+      QueryOptions(
+        document: parseString(signUpMutation),
+        fetchPolicy: FetchPolicy.networkOnly,
+      ),
     );
     if (!result.hasException || result.data != null) return result.data;
     return {};

@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:mobile/api/repos/rydes_repo.dart';
+import 'package:mobile/global/utils/i18n.dart';
 
 part 'sign_in_state.dart';
 
@@ -23,9 +24,10 @@ class SignInCubit extends Cubit<SignInState> {
     final password = state.password;
     emit(SignInLoading());
     try {
-      final data = await repo.login(email, password);
+      await repo.login(email, password);
+      emit(SignInSuccess());
     } catch (e) {
-      emit(SignInSuccess(true));
+      emit(SignInError(i18n.translate.login_error));
     }
     emit(SignInInputChanged(email: email, password: password));
   }
